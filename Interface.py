@@ -1,6 +1,3 @@
-import base64
-import io
-import cv2
 import streamlit as st
 from matplotlib import pyplot as plt
 from ContextUnet import ContextUnet
@@ -8,7 +5,6 @@ import torch
 from Sampling import Sampler
 import numpy as np
 from diffusion_utilities import norm_all, plot_sample, unorm
-from IPython.display import HTML
 import streamlit.components.v1 as components
 
 
