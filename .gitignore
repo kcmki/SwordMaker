@@ -1,9 +1,8 @@
 __pycache__
 
-/Data/packs
+# ignore datas
 
-/Data/used
-
-/Data/used2
-
-/Data/extracted
+Data/used2/
+Data/used/
+Data/packs/
+Data/extracted/
