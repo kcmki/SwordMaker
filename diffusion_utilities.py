@@ -8,7 +8,6 @@ from matplotlib.animation import FuncAnimation, PillowWriter
 import os
 import torchvision.transforms as transforms
 from torch.utils.data import Dataset
-from PIL import Image
 
 
 class ResidualConvBlock(nn.Module):
