@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# Script to get all sword texture from inside texturepack zip files
+
 from zipfile import ZipFile
 import os
 from PIL import Image
@@ -51,6 +53,7 @@ for file_name in paths:
             z.close()
     except Exception as e:
         print(e)
+
 """         with ZipFile(file_name,'r') as z:
             try:
                 image = [file for file in z.namelist() if file.endswith("diamond_sword.png")]

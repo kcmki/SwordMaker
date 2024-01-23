@@ -1,3 +1,5 @@
+# Script to resize all images to 16x16 to suit our model
+
 import numpy as np
 import cv2 
 import csv 
@@ -16,7 +18,7 @@ all_files = os.listdir(image_dir)
 sw_files = [file for file in all_files if file.startswith('sw') and (file.endswith('.jpg') or file.endswith('.png'))]
 
 # Loop through the filtered files and read each image using cv2
-i=126
+i=225
 
 white_color = np.array([255, 255, 255])
 

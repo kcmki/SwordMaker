@@ -74,8 +74,7 @@ class ResidualConvBlock(nn.Module):
         self.conv1[0].out_channels = out_channels
         self.conv2[0].in_channels = out_channels
         self.conv2[0].out_channels = out_channels
-
-        
+     
 
 class UnetUp(nn.Module):
     def __init__(self, in_channels, out_channels):
@@ -199,12 +198,26 @@ def plot_sample(x_gen_store,n_sample,nrows,save_dir, fn,  w, save=False):
     def animate_diff(i, store):
         print(f'gif animating frame {i} of {store.shape[0]}', end='\r')
         plots = []
-        for row in range(nrows):
-            for col in range(ncols):
-                axs[row, col].clear()
-                axs[row, col].set_xticks([])
-                axs[row, col].set_yticks([])
-                plots.append(axs[row, col].imshow(store[i,(row*ncols)+col]))
+        try:
+            for row in range(nrows):
+                for col in range(ncols):
+                    axs[row, col].clear()
+                    axs[row, col].set_xticks([])
+                    axs[row, col].set_yticks([])
+                    plots.append(axs[row, col].imshow(store[i,(row*ncols)+col]))
+        except:
+            if nrows == 1 and ncols == 1:
+                axs.clear()
+                axs.set_xticks([])
+                axs.set_yticks([])
+                plots.append(axs.imshow(store[i,(row*ncols)+col]))
+            else:
+                for j in range(ncols):
+                    axs[j].clear()
+                    axs[j].set_xticks([])
+                    axs[j].set_yticks([])
+                    plots.append(axs[j].imshow(store[i,j]))
+        
         return plots
     ani = FuncAnimation(fig, animate_diff, fargs=[nsx_gen_store],  interval=200, blit=False, repeat=True, frames=nsx_gen_store.shape[0]) 
     plt.close()
@@ -212,7 +225,6 @@ def plot_sample(x_gen_store,n_sample,nrows,save_dir, fn,  w, save=False):
         ani.save(save_dir + f"{fn}_w{w}.gif", dpi=100, writer=PillowWriter(fps=5))
         print('saved gif at ' + save_dir + f"{fn}_w{w}.gif")
     return ani
-
 
 class CustomDataset(Dataset):
     def __init__(self, sfilename, label, transform, null_context=False):
@@ -255,4 +267,5 @@ transform = transforms.Compose([
 ]) 
 
 dataset = CustomDataset('Data/data16', [1,0], transform, null_context=False)
+
 
