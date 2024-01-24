@@ -228,9 +228,9 @@ def plot_sample(x_gen_store,n_sample,nrows,save_dir, fn,  w, save=False):
 class CustomDataset(Dataset):
     def __init__(self, sfilename, label, transform, null_context=False):
         # Get a list of all files in the directory
-        all_files = os.listdir('/Data/data16')
+        all_files = os.listdir('/mount/src/swordmaker/Data/data16')
         # Filter files that start with "sw" and end with an image extension (e.g., jpg, png)
-        self.sprites = np.array([cv2.imread(os.path.join('/Data/data16', file),cv2.IMREAD_UNCHANGED) for file in all_files if file.startswith('csw') and (file.endswith('.jpg') or file.endswith('.png'))])
+        self.sprites = np.array([cv2.imread(os.path.join('/mount/src/swordmaker/Data/data16', file),cv2.IMREAD_UNCHANGED) for file in all_files if file.startswith('csw') and (file.endswith('.jpg') or file.endswith('.png'))])
         self.sprites = self.sprites[:, :, :, :3]
         self.slabels = np.tile(label,(self.sprites.shape[0],1))
 
