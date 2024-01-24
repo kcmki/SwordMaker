@@ -9,7 +9,7 @@ import os
 import cv2
 
 # Directory where your image files are located
-image_dir = 'D:\_dev\AI\diffusion\SwordMaker\Data'
+image_dir = '\Data'
 
 # Get a list of all files in the directory
 all_files = os.listdir(image_dir)
@@ -50,7 +50,7 @@ for file_name in sw_files:
                     image[y, x] = [255,255,255,255]  # Set alpha channel to 0
                 if all(image[y, x] == [0,0,0,0]):  # Check if pixel is white
                     image[y, x] = [255,255,255,255]  # Set alpha channel to 0
-        cv2.imwrite("D:\_dev\AI\diffusion\SwordMaker\Data\data16\csw"+str(i)+".png", image)
+        cv2.imwrite("\Data\data16\csw"+str(i)+".png", image)
         i=i+1
 
 # Wait for a key press and then close all windows
